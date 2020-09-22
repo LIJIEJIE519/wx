@@ -2,7 +2,7 @@
 <view class="container">
   <view>
     <a class="weui-btn weui-btn_primary" bindtap="main01">开始治疗</a>
-    <view>{{currentText}}</view>
+    <!-- <view>{{currentText}}</view> -->
     <view class="main_img">
       <image src="/images/index.jpg" 
       bindtouchstart="touchStart" bindtouchend="touchEnd"></image>
