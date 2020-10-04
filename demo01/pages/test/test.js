@@ -1,18 +1,15 @@
 
 // 录音
-// const recorderManager = wx.getRecorderManager();
-// const options = {
-//     duration: 10000,
-//     sampleRate: 16000,
-//     numberOfChannels: 1,
-//     encodeBitRate: 64000,
-//     format: 'mp3',
-//     frameSize: 50
-// }
+const recorderManager = wx.getRecorderManager();
+const options = {
+    duration: 10000,
+    sampleRate: 16000,
+    numberOfChannels: 1,
+    encodeBitRate: 64000,
+    format: 'wav',
+    frameSize: 50
+}
 
-// 同声传译
-var plugin = requirePlugin("WechatSI")
-let manager = plugin.getRecordRecognitionManager()
 
 Page({
   data: {
@@ -25,58 +22,48 @@ Page({
   },
   endRecoder: function() {
     console.log("endRecoder")
-    recorderManager.onStop((res) => {
-      console.log('recorder stop', res)
+    recorderManager.onStop(res => {
+      console.log('recorder stop, tempFilePath :', res.tempFilePath)
+      wx.uploadFile({
+        url: 'http://127.0.0.1:9999/uploadAudio',
+        filePath: res.tempFilePath,
+        name: 'file',
+        success (res){
+          console.log(res)
+        },
+        fail (e) {
+          console.log(e)
+        }
+      })
     })
     recorderManager.stop()
   },
-  touchStart (){
-    console.log("touchStart")
-    manager.start({
-      lang: 'zh_CN',
-      duration:60000
-    })
-  },
-  touchEnd (){
-    console.log("touchEnd")
-    manager.stop()
-  },
 
+  time: function () {
+    setInterval(function() {
+      console.log("2s")
+      recorderManager.onStop(res => {
+        console.log("---录音关闭-----")
+        console.log('recorder stop, tempFilePath :', res.tempFilePath)
+
+        recorderManager.stop()
+      })
+
+      // console.log("----开始录音----")
+      // recorderManager.start(options)
+    }, 2000)
+  },
   onLoad: function () {
-    // console.log("开始录音监听")
-    // recorderManager.onStart(() => {
-    //   console.log('recorder start')
-    // })
+    console.log("开始录音监听-----")
+    recorderManager.onStart(() => {
+      console.log('recorder start')
+    })
+
+    console.log("开始录音----")
+    recorderManager.start(options)
+
+    this.time();
+    
   
   },
-
-  onReady: function () {
-    console.log("onReady")
-
-    manager.onStop = res=>{
-      let text = res.result
-      console.log(res)
-      if(text==''){
-        console.log('用户没有说话')
-      }else{
-        console.log(text)
-      }
-    },
-
-    manager.onRecognize = function(res) {
-      console.log("current result", res.result)
-      // this.setData({
-      //   currentText: res.result,
-      // })
-    }
-
-    manager.onError = function (res) {
-      console.log('manager.onError')
-      console.log(res)//报错信息打印
-    }
-  }
-
-  
-
- 
 })
