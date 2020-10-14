@@ -20,14 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c33ae937-9f09-4b83-a7d4-c67624ef2edc" name="默认" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../snowboy_old/snowboy/demo0.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../snowboy_old/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo01/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../demo01/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo01/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo01/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ocr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ocr.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/20200908215559.pcm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +41,6 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="ocr" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -246,6 +238,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597558918072</updated>
       <workItem from="1601424982800" duration="541000" />
+      <workItem from="1601776454074" duration="50000" />
     </task>
     <servers />
   </component>
@@ -271,8 +264,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

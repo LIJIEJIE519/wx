@@ -26,18 +26,18 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"bundle": true,
 		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": true,
 		"useMultiFrameRuntime": false,
 		"useApiHook": true,
 		"packNpmManually": false,
-		"packNpmRelationList": [],
-		"bundle": true
+		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wxf0cd826c23f3f522",
+	"appid": "wxf40c46432d9bd0cc",
 	"projectname": "demo01",
 	"debugOptions": {
 		"hidedInDevtools": []

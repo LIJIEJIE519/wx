@@ -68,7 +68,7 @@ def get_pic():
 @app.route("/uploadAudio", methods=["POST"])
 def get_audio():
     upload_file = request.files['file']
-    file_name = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ".pcm"
+    file_name = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ".wav"
     if upload_file:
         file_path = os.path.join('D:/IT_experience/python/ocr/audio/', file_name)
         upload_file.save(file_path)

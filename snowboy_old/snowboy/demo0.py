@@ -17,7 +17,7 @@ def interrupt_callback():
 def detected():
     print("YES 检测到关键词！\n")
 
-wave_file = "../snow_old.wav"
+wave_file = "../audio/old.wav"
 model = "../old.pmdl"
 
 print("请输入检测类型：0-->麦克风 / 1-->file.wav!\n")

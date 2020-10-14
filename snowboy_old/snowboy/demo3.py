@@ -23,7 +23,7 @@ import wave
 
 # wave_file = "../snow_old.wav"
 wave_file = "resources/snowboy.wav"
-model_file = "../old.pmdl"
+model_file = "../model/old.pmdl"
 
 f = wave.open(wave_file)
 assert f.getnchannels() == 1, "Error: Snowboy only supports 1 channel of audio (mono, not stereo)"
