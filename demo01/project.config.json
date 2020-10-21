@@ -6,16 +6,16 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
-		"nodeModules": false,
 		"autoAudits": false,
+		"coverView": true,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
+		"enhance": false,
+		"nodeModules": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -87,6 +87,21 @@
 					"id": -1,
 					"name": "test",
 					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "testCamera",
+					"pathName": "pages/testCamera/testCamera",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "word2voice",
+					"pathName": "pages/word2voice/word2voice",
+					"query": "",
 					"scene": null
 				}
 			]

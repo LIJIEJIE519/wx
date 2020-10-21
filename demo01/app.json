@@ -5,7 +5,10 @@
     "pages/main02/mindex02",
     "pages/main03/mindex03",
     "pages/main04/mindex04",
-    "pages/test/test",
+    "pages/test/test",  
+    "pages/test2/test2",  
+    "pages/testCamera/testCamera",
+    "pages/word2voice/word2voice",
     "pages/d_components/index", 
     "pages/history/hindex",
     "pages/logs/logs"

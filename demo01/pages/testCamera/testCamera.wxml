@@ -1,0 +1,36 @@
+<view class="container" style="padding: 10rpx 0">
+  <view>
+    <button type="primary" bindtap="togglePosition">切换摄像头</button>
+  </view>
+  <view class="page-body">
+  <view style="margin: 10rpx 0;">欢迎来到老中医，很高兴为您服务！</view>
+
+    <view class="page-body-wrapper">
+      <camera
+        flash="off"
+        device-position="{{position}}"
+        binderror="error">
+      </camera>
+
+
+      <view class="btn-area">
+        <button type="primary" bindtap="takePhoto">拍照</button>
+      </view>
+
+      <view>
+        <navigator url="../test2/test2">
+          <a class="weui-btn weui-btn_disabled weui-btn_primary">下一页</a>
+        </navigator>
+      </view>
+      <!-- <view class="btn-area">
+        <button type="primary" bindtap="startRecord">开始录像</button>
+      </view>
+      <view class="btn-area">
+        <button type="primary" bindtap="stopRecord">结束录像</button>
+      </view> -->
+      <!-- <image wx:if="{{src}}" mode="widthFix" class="photo" src="{{src}}"></image>
+      <video wx:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video> -->
+    </view>
+  </view>
+
+</view>

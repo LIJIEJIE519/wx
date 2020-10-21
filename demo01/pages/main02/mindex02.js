@@ -1,4 +1,5 @@
-// pages/main02/mindex02.js
+const plugin = requirePlugin('WechatSI');
+
 Page({
 
   /**
@@ -49,7 +50,17 @@ Page({
       {value: "3", name: "3 分（不一定）"},
       {value: "2", name: "2 分（不同意）"},
       {value: "1", name: "1 分（非常不同意）"},
-    ]
+    ],
+    content: '', //内容
+    src:'', //
+    list: [
+    "1. 头重如裹",
+    "2. 昏昏欲睡",
+    "3. 脘腹痞满",
+    "4. 呕恶涎沫",
+    "5. 肢体困重"],
+
+    src: ""
   },
   //
   radioChange: function(e) {
@@ -87,48 +98,53 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //创建内部 audio 上下文 InnerAudioContext 对象。
+    this.innerAudioContext = wx.createInnerAudioContext();
+    this.innerAudioContext.onError(function (res) {
+      console.log(res);
+      wx.showToast({
+        title: '语音播放失败',
+        icon: 'none',
+      })
+    }) 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onLoad(e) {
+    this.word2voice();
   },
+  // 文字转语音
+  word2voice:function (e) {
+    var that = this;
+    for (let i = 0; i < this.data.list.length; ++i) {
+      var content = this.data.list[i];
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+      plugin.textToSpeech({
+        lang: "zh_CN",
+        tts: true,
+        content: content,
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            src: res.filename
+          })
+          that.play();
+        },
+        fail: function (res) {
+          console.log(res)
+        }
+      })
 
+    }
+    
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  
+  //播放语音
+  play: function (e) {
+    if (this.data.src == '') {
+      console.log(暂无语音);
+      return;
+    }
+    this.innerAudioContext.src = this.data.src //设置音频地址
+    this.innerAudioContext.play(); //播放音频
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
