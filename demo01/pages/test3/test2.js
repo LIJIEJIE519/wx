@@ -6,12 +6,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    content: '恭喜您已经完成舌苔检测，马上进入下一步', //内容
-    src:'', //
+    content: '恭喜您已经完成舌苔检测，马上进入下一步', // 语音播放内容
+    src: '',  //word2voice地址
   },
 
   onReady(e) {
-    //创建内部 audio 上下文 InnerAudioContext 对象。
+    this.voice();
+  },
+  onLoad(e) {
+    this.word2voice();
+    this.delay();
+  },
+
+  delay: function() {
+    setTimeout(function () {
+      wx.navigateTo({
+        url: '../test4/test3'
+      })
+     }, 6000) //延迟时间
+  },
+
+  // 创建内部 voice 上下文 InnerAudioContext 对象。
+  voice: function() {
     this.innerAudioContext = wx.createInnerAudioContext();
     this.innerAudioContext.onError(function (res) {
       console.log(res);
@@ -21,17 +37,9 @@ Page({
       })
     }) 
   },
-  onLoad(e) {
-    this.word2voice();
 
-    setTimeout(function () {
-      wx.navigateTo({
-        url: '../main02/mindex02'
-      })
-     }, 6000) //延迟时间 这里是1秒
-  },
   // 文字转语音
-  word2voice:function (e) {
+  word2voice: function (e) {
     var that = this;
     var content = this.data.content;
     plugin.textToSpeech({
@@ -54,7 +62,7 @@ Page({
   //播放语音
   play: function (e) {
     if (this.data.src == '') {
-      console.log(暂无语音);
+      console.log("暂无语音");
       return;
     }
     this.innerAudioContext.src = this.data.src //设置音频地址

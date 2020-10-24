@@ -1,6 +1,3 @@
-//index.js
-//获取应用实例
-const app = getApp()
 const plugin = requirePlugin('WechatSI');
 
 // 录音
@@ -13,40 +10,68 @@ const options = {
     format: 'mp3',
     frameSize: 50
 }
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    content: '我是老中医，很高兴为您服务',        // word2voice内容
-    currentText: "我是老中医，很高兴为您服务！",  // 页面显示内容
+    qnaire: [
+      {
+        "question": "1. 头重如裹"
+      },
+      {
+        "question": "2. 昏昏欲睡"
+      },
+      {
+        "question": "3. 脘腹痞满"
+      },
+      {
+        "question": "10. 体型肥胖",
+        "option": {
+          "2": "体重指数＜25",
+          "3": "25≤体重指数＜29",
+          "4": "29≤体重指数＜34",
+          "5": "34≤体重指数",  
+        }
+      }],
+    option: [
+      {value: "5", name: "5 分（非常同意）"},
+      {value: "4", name: "4 分（同意）"},
+      {value: "3", name: "3 分（不一定）"},
+      {value: "2", name: "2 分（不同意）"},
+      {value: "1", name: "1 分（非常不同意）"}],
+
+    content: '', // 语音播放内容
     src: '',  //word2voice地址
-    timeId: 0,
-    
-  },
+    list: [
+    "您是否头重如裹",
+    "您是否昏昏欲睡",
+    "您是否脘腹痞满",
+    "您是否呕恶涎沫",
+    "您是否肢体困重"],
 
-  endTime: function() {
-    console.log("停止循环...")
-    clearInterval(this.timeId)
   },
-
-  time: function () {
-    this.timeId = setInterval(function() {
-      recorderManager.start(options)
-    }, 4000)
-  },
-
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function () {
-    this.word2voice(this.data.content);
+    this.word2voice(this.data.list[0]);
     recorderManager.onStart(() => {})
     recorderManager.start(options)
-    this.time();
+    // this.time();
     this.recordeDetect();
-    
   },
-  onReady(e) {
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     this.voice();
   },
 
-  // 关键字录音上传检测
+
+   // 关键字录音上传检测
   recordeDetect: function() {
     recorderManager.onStop(res => {
       let _that = this;
@@ -59,9 +84,9 @@ Page({
           
           if(res.data == "YES 检测到关键词!") {
             _that.endTime();
-            wx.navigateTo({
-              url: '../test2/testCamera',
-            })
+            // wx.navigateTo({
+            //   url: '../testCamera/testCamera',
+            // })
           }
         },
         fail (e) {
@@ -82,7 +107,6 @@ Page({
       })
     }) 
   },
-
   // 文字转语音
   word2voice:function (content) {
     var that = this;
@@ -112,6 +136,4 @@ Page({
     this.innerAudioContext.src = this.data.src //设置音频地址
     this.innerAudioContext.play(); //播放音频
   },
-
-
 })

@@ -9,9 +9,7 @@ Page({
   },
 
   data: {
-    src: '',
-    videoSrc: '',
-    position: 'back',
+    position: 'front',
     result: {},
     frameWidth: 0,
     frameHeight: 0,
@@ -20,21 +18,13 @@ Page({
     showCanvas: false,
 
     timeId: 0,
-    content: '第一步，请伸舌头',//内容
+    content: '第一步，请伸舌头',//word2voice内容
+    src: '',  //word2voice地址
   },
   
   onReady() {
     this.ctx = wx.createCameraContext()
-
-    //创建内部 audio 上下文 InnerAudioContext 对象。
-    this.innerAudioContext = wx.createInnerAudioContext();
-    this.innerAudioContext.onError(function (res) {
-      console.log(res);
-      wx.showToast({
-        title: '语音播放失败',
-        icon: 'none',
-      })
-    }) 
+    this.voice();
   },
 
   endTime: function() {
@@ -46,17 +36,29 @@ Page({
     let _that = this;
     this.timeId = setInterval(function() {
       _that.takePhoto();
-    }, 1000)
+    }, 5000)
   },
 
   onLoad(e) {
-    this.word2voice();
-    // this.time();
+    this.word2voice(this.data.content);
+    this.time();
   },
+
+  // 创建内部 voice 上下文 InnerAudioContext 对象。
+  voice: function() {
+    this.innerAudioContext = wx.createInnerAudioContext();
+    this.innerAudioContext.onError(function (res) {
+      console.log(res);
+      wx.showToast({
+        title: '语音播放失败',
+        icon: 'none',
+      })
+    }) 
+  },
+
   // 文字转语音
-  word2voice: function (e) {
+  word2voice: function (content) {
     var that = this;
-    var content = this.data.content;
     plugin.textToSpeech({
       lang: "zh_CN",
       tts: true,
@@ -77,7 +79,7 @@ Page({
   //播放语音
   play: function (e) {
     if (this.data.src == '') {
-      console.log(暂无语音);
+      console.log("暂无语音");
       return;
     }
     this.innerAudioContext.src = this.data.src //设置音频地址
@@ -108,7 +110,9 @@ Page({
     })
     this.listener.start()
   },
+  // 拍照上传
   takePhoto: function() {
+    var that = this;
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
@@ -116,12 +120,20 @@ Page({
           src: res.tempImagePath
         }),
         wx.uploadFile({
-          // url: 'http://81.70.101.221:9999/uploadImg',
-          url: 'http://127.0.0.1:9999/uploadImg',
+          url: 'http://81.70.101.221:9999/uploadImg',
+          // url: 'http://127.0.0.1:9999/uploadImg',
           filePath: res.tempImagePath,
           name: 'file',
           success (ans){
             console.log(ans)
+            if(ans.data == "Yes") {
+              that.endTime();
+              wx.navigateTo({
+                url: '../test3/test2',
+              })
+            } else {
+              that.word2voice("没有检测到舌头，请调整位置")
+            }
           },
           fail (e) {
             console.log(e)
@@ -130,34 +142,8 @@ Page({
       }
     })
   },
-  startRecord() {
-    this.ctx.startRecord({
-      success: () => {
-        console.log('startRecord')
-      }
-    })
-  },
-  stopRecord() {
-    this.ctx.stopRecord({
-      success: (res) => {
-        this.setData({
-          src: res.tempThumbPath,
-          videoSrc: res.tempVideoPath
-        })
-        wx.uploadFile({
-          url: 'http://127.0.0.1:9999/uploadVideo',
-          filePath: res.tempVideoPath,
-          name: 'file',
-          success (ans){
-            console.log(ans)
-          },
-          fail (e) {
-            console.log(e)
-          }
-        })
-      }
-    })
-  },
+
+  // 摄像头位置
   togglePosition() {
     this.setData({
       position: this.data.position === 'front'
