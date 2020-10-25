@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from util import webm_to_wav, snowboy_from_file
+from util import webm_to_wav, snowboy_from_file, detect_tongue
 import os
 import time
 app = Flask(__name__)
@@ -13,7 +13,12 @@ def get_pic():
     if upload_file:
         file_path = os.path.join('imgs/', file_name)
         upload_file.save(file_path)
-        return file_name
+        if detect_tongue(image_path=file_path) >= 0.5:
+            os.remove(file_path)
+            return "Yes"
+        else:
+            os.remove(file_path)
+            return "No"
     else:
         return 'failed'
 
@@ -36,9 +41,18 @@ def get_audio():
             return res
         else:
             return "webm 2 wav失败，上传音频错误"
-        # return file_name
     else:
         return 'failed'
 
+@app.route("/detect_tongue", methods=["GET"])
+def test_tongue():
+    return str(detect_tongue())
+
+@app.route("/test", methods=["GET"])
+def test():
+    return "test"
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host="127.0.0.1", port=9999)
+    # app.run(debug=True, host="127.0.0.1", port=9999)
+    app.run(debug=True, host="0.0.0.0", port=9999)

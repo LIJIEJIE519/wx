@@ -1,6 +1,10 @@
 from snowboy import snowboydecoder
 import os
 import wave
+import json
+import numpy as np
+import requests
+from PIL import Image
 
 def webm_to_wav(webm_path, wav_path, sampling_rate=16000, channel=1):
     """
@@ -36,7 +40,36 @@ def snowboy_from_file(wave_file, model="model/old.pmdl"):
     else:
         return 'NO 未检测到关键词!'
 
+def load_image_into_numpy_array(image):
+  (im_width, im_height) = image.size
+  return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
 
-print(snowboy_from_file("model/snow_old.wav"))
+def detect_tongue(image_path="model/test_tongue.jpeg"):
+    image = Image.open(image_path)
+    image_np = np.expand_dims(load_image_into_numpy_array(image), 0)
+
+    data = json.dumps({
+        "instances": image_np.tolist()
+    })
+    headers = {"content-type": "application/json"}
+    json_response = requests.post(
+        'http://localhost:8501/v1/models/my_tongue:predict',
+        # 'http://81.70.101.221:8501/v1/models/my_tongue:predict',
+        data=data, headers=headers)
+
+    print(json_response.text)
+    predictions = json.loads(json_response.text)
+    predictions = predictions["predictions"]
+
+    output_dict = {}
+    output_dict['num_detections'] = int(predictions[0]['num_detections'])
+    output_dict['detection_classes'] = np.array(predictions[0]['detection_classes']).astype(np.uint8)
+    output_dict['detection_boxes'] = np.array(predictions[0]['detection_boxes'])
+    output_dict['detection_scores'] = np.array(predictions[0]['detection_scores'])
+    # print(output_dict)
+    return output_dict["detection_scores"][0]
+
+# detect_tongue("imgs/test_tongue.jpeg")
+# print(snowboy_from_file("model/snow_old.wav"))
 
 # webm_to_wav("audio/20201006082014.mp3", "audio/1.wav")
