@@ -129,7 +129,7 @@ Page({
             if(ans.data == "Yes") {
               that.endTime();
               wx.navigateTo({
-                url: '../test3/test2',
+                url: '../test3/test3',
               })
             } else {
               that.word2voice("没有检测到舌头，请调整位置")

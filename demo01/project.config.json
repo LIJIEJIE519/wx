@@ -91,13 +91,6 @@
 					"scene": null
 				},
 				{
-					"id": 3,
-					"name": "testCamera",
-					"pathName": "pages/testCamera/testCamera",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "word2voice",
 					"pathName": "pages/word2voice/word2voice",
@@ -106,8 +99,9 @@
 				},
 				{
 					"id": -1,
-					"name": "test3",
-					"pathName": "pages/test3/test3",
+					"name": "test2",
+					"pathName": "pages/test2/test2",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -21,7 +21,7 @@ Page({
   delay: function() {
     setTimeout(function () {
       wx.navigateTo({
-        url: '../test4/test3'
+        url: '../test4/test4'
       })
      }, 6000) //延迟时间
   },

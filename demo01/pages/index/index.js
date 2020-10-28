@@ -60,7 +60,7 @@ Page({
           if(res.data == "YES 检测到关键词!") {
             _that.endTime();
             wx.navigateTo({
-              url: '../test2/testCamera',
+              url: '../test2/test2',
             })
           }
         },
