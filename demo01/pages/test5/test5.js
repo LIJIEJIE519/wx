@@ -1,6 +1,3 @@
-//index.js
-//获取应用实例
-const app = getApp()
 const plugin = requirePlugin('WechatSI');
 
 // 录音
@@ -13,54 +10,74 @@ const options = {
     format: 'mp3',
     frameSize: 50
 }
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    content: '我是老中医，很高兴为您服务',        // word2voice内容
-    currentText: "我是老中医，很高兴为您服务！",  // 页面显示内容
+    qnaire: [
+      {
+        "question": "1. 您是否头重如裹？请回答是或否。"
+      },
+    ],
+    option: [
+      {value: "1", name: "是"},
+      {value: "0", name: "否"},
+    ],
+    content: '您是否昏昏欲睡？请回答是或否。', // 语音播放内容
     src: '',  //word2voice地址
-    timeId: 0,
+    timeId: 0,  //计时器id
+    list: [
+    "您是否头重如裹？请回答是或否。",
+    "您是否昏昏欲睡？请回答是或否。",
+    "您是否肢体困重？请回答是或否。"],
     
   },
 
-  endTime: function() {
-    console.log("停止循环...")
-    clearInterval(this.timeId)
-  },
-
-  time: function () {
-    this.timeId = setInterval(function() {
-      recorderManager.start(options)
-    }, 4000)
-  },
-
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function () {
     this.word2voice(this.data.content);
-    recorderManager.onStart(() => {})
-    recorderManager.start(options)
-    this.time();
-    this.recordeDetect();
-    
+    var that = this;
+    this.delayRecoder(6000);
   },
-  onReady(e) {
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     this.voice();
   },
 
-  // 关键字录音上传检测
+  delayRecoder: function(time) {
+    let that = this;
+    setTimeout(function() {
+      recorderManager.onStart(() => {})
+      recorderManager.start(options)
+      that.recordeDetect();
+    }, time);  
+  },
+
+   // 关键字录音上传检测
   recordeDetect: function() {
     recorderManager.onStop(res => {
-      let _that = this;
+      let that = this;
       wx.uploadFile({
-        url: 'http://81.70.101.221:9999/detectHotWord',
+        url: 'http://81.70.101.221:9999/detectHotWords',
         filePath: res.tempFilePath,
         name: 'file',
         success (res){
           console.log(res);
-          if(res.data == 1) {
-            _that.endTime();
+          if(res.data >= 1) {
+            console.log("11111");
             wx.navigateTo({
-              url: '../test2/test2',
+              url: '../test6/test6',
             })
+          } else if(res.data <= 0) {
+            that.play(that.data.src);
+            that.delayRecoder(5000);
           }
         },
         fail (e) {
@@ -81,7 +98,6 @@ Page({
       })
     }) 
   },
-
   // 文字转语音
   word2voice:function (content) {
     var that = this;
@@ -91,10 +107,11 @@ Page({
       content: content,
       success: function (res) {
         console.log(res);
+        // 保存当前地址
         that.setData({
           src: res.filename
         })
-        that.play();
+        that.play(res.filename);
       },
       fail: function (res) {
         console.log(res)
@@ -103,14 +120,12 @@ Page({
   },
   
   //播放语音
-  play: function (e) {
-    if (this.data.src == '') {
+  play: function (src) {
+    if (src == '') {
       console.log("暂无语音");
       return;
     }
-    this.innerAudioContext.src = this.data.src //设置音频地址
+    this.innerAudioContext.src = src //设置音频地址
     this.innerAudioContext.play(); //播放音频
   },
-
-
 })

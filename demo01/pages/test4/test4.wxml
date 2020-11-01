@@ -14,17 +14,8 @@
         <view class='question'>{{item.question}}</view>
         <view class="line"></view>
         <radio-group class='radio-group' name='answer{{index}}' bindchange='radioChange'>
-          
-          <view wx:if="{{item.option != null}}">
-            <view class="radio" wx:for="{{item.option}}" wx:for-item="item_option" wx:for-index="item_index">
-              <label><radio value="{{item_index}}" />{{item_option}}</label>
-            </view>
-          </view>
-
-          <view wx:else>
           <view class="radio" wx:for="{{option}}" wx:for-item="select">
               <label><radio value="{{select.value}}" />{{select.name}}</label>
-            </view>
           </view>
         </radio-group>
       </view>
