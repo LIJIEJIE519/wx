@@ -1,5 +1,6 @@
 
 const plugin = requirePlugin('WechatSI');
+let tongue_num = 0;
 
 Page({
   onShareAppMessage() {
@@ -18,8 +19,9 @@ Page({
     showCanvas: false,
 
     timeId: 0,
-    content: '第一步，请伸舌头',//word2voice内容
+    content: '第一步为您进行舌诊，请伸舌头对准摄像头！',//word2voice内容
     src: '',  //word2voice地址
+    tongue_src: '', // 舌头拍照地址
   },
   
   onReady() {
@@ -41,7 +43,10 @@ Page({
 
   onLoad(e) {
     this.word2voice(this.data.content);
-    this.time();
+    let that = this;
+    setTimeout(function() {
+      that.time();
+    }, 2000);  
   },
 
   // 创建内部 voice 上下文 InnerAudioContext 对象。
@@ -68,7 +73,7 @@ Page({
         that.setData({
           src: res.filename
         })
-        that.play();
+        that.play(res.filename);
       },
       fail: function (res) {
         console.log(res)
@@ -77,12 +82,12 @@ Page({
   },
   
   //播放语音
-  play: function (e) {
-    if (this.data.src == '') {
+  play: function (src) {
+    if (src == '') {
       console.log("暂无语音");
       return;
     }
-    this.innerAudioContext.src = this.data.src //设置音频地址
+    this.innerAudioContext.src = src //设置音频地址
     this.innerAudioContext.play(); //播放音频
   },
  
@@ -92,9 +97,7 @@ Page({
     }
     const canvas = res.node
     const render = createRenderer(canvas, this.data.width, this.data.height);
-
     this.listener = this.ctx.onCameraFrame((frame) => {
-
       render(new Uint8Array(frame.data), frame.width, frame.height);
       const {
         frameWidth,
@@ -104,9 +107,7 @@ Page({
       this.setData({
         frameWidth: frame.width,
         frameHeight: frame.height,
-        
       })
-
     })
     this.listener.start()
   },
@@ -116,23 +117,28 @@ Page({
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        this.setData({
-          src: res.tempImagePath
-        }),
         wx.uploadFile({
           url: 'http://81.70.101.221:9999/uploadImg',
-          // url: 'http://127.0.0.1:9999/uploadImg',
           filePath: res.tempImagePath,
           name: 'file',
           success (ans){
             console.log(ans)
             if(ans.data == "Yes") {
-              that.endTime();
-              wx.navigateTo({
-                url: '../test3/test3',
-              })
+              tongue_num += 1;
+              if (tongue_num != 3) {
+                that.setData({
+                  tongue_src: res.tempImagePath
+                })
+                that.word2voice("请转一转头！")
+                console.log(tongue_num);
+              } else {
+                that.endTime();
+                wx.navigateTo({
+                  url: '../test3/test3',
+                })
+              }
             } else {
-              that.word2voice("没有检测到舌头，请调整位置")
+              that.word2voice("没有检测到舌头，请调整位置");
             }
           },
           fail (e) {

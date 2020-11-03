@@ -18,14 +18,14 @@ Page({
   data: {
     qnaire: [
       {
-        "question": "1. 您是否头重如裹？请回答是或否。"
+        "question": "3. 您是否肢体困重？请回答是或否。"
       },
     ],
     option: [
       {value: "1", name: "是"},
       {value: "0", name: "否"},
     ],
-    content: '您是否肢体困重？请回答是或否。', // 语音播放内容
+    content: '最后一个问题，您是否肢体困重？请回答是或否。', // 语音播放内容
     src: '',  //word2voice地址
     timeId: 0,  //计时器id
     list: [
@@ -41,7 +41,7 @@ Page({
   onLoad: function () {
     this.word2voice(this.data.content);
     var that = this;
-    this.delayRecoder(6000);
+    this.delayRecoder(8000);
   },
 
   /**
@@ -77,7 +77,7 @@ Page({
             // })
           } else if(res.data <= 0) {
             that.play(that.data.src);
-            that.delayRecoder(5000);
+            that.delayRecoder(7000);
           }
         },
         fail (e) {

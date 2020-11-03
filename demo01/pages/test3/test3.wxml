@@ -3,7 +3,7 @@
   <view>
     <view style="text-align:center;">{{currentText}}</view>
     <view class="main_img">
-      <image src="/images/1.jpg" />
+      <image src="/images/2.jpg" />
     </view>
   </view>
   <view style="height:100px;"></view>
