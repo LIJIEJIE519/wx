@@ -17,10 +17,10 @@ def interrupt_callback():
 def detected():
     print("YES 检测到关键词！\n")
 
-wave_file = "../audio/old.wav"
+wave_file = "../audio/old.wavs"
 model = "../old.pmdl"
 
-print("请输入检测类型：0-->麦克风 / 1-->file.wav!\n")
+print("请输入检测类型：0-->麦克风 / 1-->file.wavs!\n")
 type_what = input()
 if int(type_what) == 0:
     # 信号【进程之间通讯的方式】--Ctrl+C【终止进程  中断进程】

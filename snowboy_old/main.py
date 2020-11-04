@@ -22,20 +22,19 @@ def get_pic():
     else:
         return 'failed'
 
-# 上传录音文件
-@app.route("/uploadAudio", methods=["POST"])
-def get_audio():
+# 检测关键字老中医
+@app.route("/detectHotWord", methods=["POST"])
+def detectHotWord():
     upload_file = request.files['file']
+    # 录音名称
     file_name = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
     mp3_file = "audio/"+file_name+".mp3"
     wav_file = "audio/"+file_name+".wav"
     if upload_file:
-        # file_path = os.path.join("audio/", mp3_file)
-        upload_file.save(mp3_file)
-        # webm 2 wav
-        is_wav = webm_to_wav(mp3_file, wav_file)
+        upload_file.save(mp3_file)      # 保存名mp3
+        is_wav = webm_to_wav(mp3_file, wav_file)        # webm 2 wav
         if is_wav == 0:
-            res = snowboy_from_file(wav_file, "model/xiaobai.pmdl")
+            res = snowboy_from_file(wav_file, models=["assets/models/xiaobai.pmdl"])
             os.remove(mp3_file)
             os.remove(wav_file)
             return res
@@ -43,6 +42,29 @@ def get_audio():
             return "webm 2 wav失败，上传音频错误"
     else:
         return 'failed'
+
+# 检测关键词  是--否
+@app.route("/detectHotWords", methods=["POST"])
+def detectHotWords():
+    upload_file = request.files['file']
+    # 录音名称
+    file_name = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    mp3_file = "audio/"+file_name+".mp3"
+    wav_file = "audio/"+file_name+".wav"
+    if upload_file:
+        upload_file.save(mp3_file)      # 保存名mp3
+        is_wav = webm_to_wav(mp3_file, wav_file)        # webm 2 wav
+        if is_wav == 0:
+            res = snowboy_from_file(wav_file, models=["assets/models/yes.pmdl", "assets/models/no.pmdl"])
+            os.remove(mp3_file)
+            os.remove(wav_file)
+            return res
+        else:
+            return "webm 2 wav失败，上传音频错误"
+    else:
+        return 'failed'
+
+
 
 @app.route("/detect_tongue", methods=["GET"])
 def test_tongue():

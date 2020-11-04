@@ -2,7 +2,7 @@ import pyaudio
 import wave
 
 # def play_audio_file():
-#     ding_wav = wave.open("snowboy/resources/snowboy.wav", 'rb')
+#     ding_wav = wave.open("snowboy/resources/snowboy.wavs", 'rb')
 #     ding_data = ding_wav.readframes(ding_wav.getnframes())
 #     audio = pyaudio.PyAudio()
 #     stream_out = audio.open(
@@ -24,7 +24,7 @@ import wave
 # def trans_mp3_to_wav(filepath):
 #     song = AudioSegment.from_mp3(filepath)
 #     AudioSegment.fr
-#     song.export("now.wav", format="wav")
+#     song.export("now.wavs", format="wavs")
 #
 # trans_mp3_to_wav("audio/test.mp3")
 
@@ -32,9 +32,9 @@ import wave
 import os
 def webm_to_wav(webm_path, wav_path, sampling_rate, channel):
     """
-    webm 转 wav
+    webm 转 wavs
     :param webm_path: 输入 webm 路劲
-    :param wav_path: 输出 wav 路径
+    :param wav_path: 输出 wavs 路径
     :param sampling_rate: 采样率
     :param channel: 通道数
     :return: wav文件
@@ -50,7 +50,7 @@ def webm_to_wav(webm_path, wav_path, sampling_rate, channel):
     os.system(command)
 if __name__ == '__main__':
     webm_path = "audio/old.mp3"
-    wav_path = "audio/old.wav"
+    wav_path = "audio/old.wavs"
     sampling_rate = 16000
     channel = 1
     webm_to_wav(webm_path, wav_path, sampling_rate, channel)

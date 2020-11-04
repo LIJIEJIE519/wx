@@ -18,11 +18,11 @@ def detected():
     print("Great，我已经识别到你的关键字！\n")
 
 # if len(sys.argv) == 1:
-#     print("Error: need to specify model name")
-#     print("Usage: python demo.py your.model")
+#     print("Error: need to specify models name")
+#     print("Usage: python demo.py your.models")
 #     sys.exit(-1)
 # argv[0] 为模块名，args[1]为第一个传入参数
-# model = sys.argv[1]
+# models = sys.argv[1]
 model = "../old.pmdl"
 
 # 信号【进程之间通讯的方式】--Ctrl+C【终止进程  中断进程】

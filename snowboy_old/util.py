@@ -6,11 +6,12 @@ import numpy as np
 import requests
 from PIL import Image
 
+# 微信录音 webm 转 wav
 def webm_to_wav(webm_path, wav_path, sampling_rate=16000, channel=1):
     """
-    webm 转 wav
+    webm 转 wavs
     :param webm_path: 输入 webm 路劲
-    :param wav_path: 输出 wav 路径
+    :param wav_path: 输出 wavs 路径
     :param sampling_rate: 采样率
     :param channel: 通道数
     :return: wav文件
@@ -25,7 +26,8 @@ def webm_to_wav(webm_path, wav_path, sampling_rate=16000, channel=1):
     is_success = os.system(command)
     return is_success
 
-def snowboy_from_file(wave_file, model="model/old.pmdl"):
+# 从文件识别一个关键字
+def snowboy_from_file(wave_file, models=["assets/models/old.pmdl"]):
     f = wave.open(wave_file)
     assert f.getnchannels() == 1, "Error: Snowboy only supports 1 channel of audio (mono, not stereo)"
     assert f.getframerate() == 16000, "Error: Snowboy only supports 16K sampling rate"
@@ -33,18 +35,16 @@ def snowboy_from_file(wave_file, model="model/old.pmdl"):
     data = f.readframes(f.getnframes())
     f.close()
 
-    detection = snowboydecoder.HotwordDetector(model, sensitivity=0.6)
+    detection = snowboydecoder.HotwordDetector(models, sensitivity=0.5)
     ans = detection.detector.RunDetection(data)
-    if ans == 1:
-        return 'YES 检测到关键词!'
-    else:
-        return 'NO 未检测到关键词!'
+    # 0--未检测到关键词，>=1--检测到关键词
+    return str(ans)
 
 def load_image_into_numpy_array(image):
   (im_width, im_height) = image.size
   return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
 
-def detect_tongue(image_path="model/test_tongue.jpeg"):
+def detect_tongue(image_path="assets/imgs/test_tongue.jpeg"):
     image = Image.open(image_path)
     image_np = np.expand_dims(load_image_into_numpy_array(image), 0)
 
@@ -54,10 +54,9 @@ def detect_tongue(image_path="model/test_tongue.jpeg"):
     headers = {"content-type": "application/json"}
     json_response = requests.post(
         'http://localhost:8501/v1/models/my_tongue:predict',
-        # 'http://81.70.101.221:8501/v1/models/my_tongue:predict',
         data=data, headers=headers)
 
-    print(json_response.text)
+    # print(json_response.text)
     predictions = json.loads(json_response.text)
     predictions = predictions["predictions"]
 
@@ -69,7 +68,7 @@ def detect_tongue(image_path="model/test_tongue.jpeg"):
     # print(output_dict)
     return output_dict["detection_scores"][0]
 
-# detect_tongue("imgs/test_tongue.jpeg")
-# print(snowboy_from_file("model/snow_old.wav"))
+# print(detect_tongue("assets/imgs/test_tongue.jpeg"))
+print(snowboy_from_file("assets/wavs/snow_old.wav", models=["assets/models/yes.pmdl", "assets/models/no.pmdl"]))
 
-# webm_to_wav("audio/20201006082014.mp3", "audio/1.wav")
+# webm_to_wav("audio/20201006082014.mp3", "audio/1.wavs")
