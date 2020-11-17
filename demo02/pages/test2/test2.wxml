@@ -1,9 +1,9 @@
 <view class="container" style="padding: 10rpx 0">
-  <view>
+  <!-- <view>
     <button type="primary" bindtap="togglePosition">切换摄像头</button>
-  </view>
+  </view> -->
   <view class="page-body">
-  <view style="margin: 10rpx 0;">欢迎来到老中医，很高兴为您服务！</view>
+  <view style="margin: 10rpx 0; font-size: 28px;">很高兴为您服务，请拍照！</view>
 
     <view class="page-body-wrapper">
       <camera
@@ -12,9 +12,8 @@
         binderror="error">
       </camera>
 
-
       <view class="btn-area">
-        <button type="primary" bindtap="takePhoto">拍照</button>
+        <button type="primary" bindtap="takePhoto" style="font-size: 26px;">{{photo_text}}</button>
       </view>
 
       <view>
@@ -23,7 +22,7 @@
         </navigator>
       </view>
 
-      <image wx:if="{{tongue_src}}" mode="widthFix" class="photo" src="{{tongue_src}}"></image>
+      <!-- <image wx:if="{{tongue_src}}" mode="widthFix" class="photo" src="{{tongue_src}}"></image> -->
     </view>
   </view>
 

@@ -6,7 +6,7 @@ const plugin = requirePlugin('WechatSI');
 Page({
   data: {
     content: '我是老中医，很高兴为您服务',        // word2voice内容
-    currentText: "我是老中医，很高兴为您服务！",  // 页面显示内容
+    currentText: "请拍三张舌头照片！",  // 页面显示内容
     src: '',  //word2voice地址
     timeId: 0,
     

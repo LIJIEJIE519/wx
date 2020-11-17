@@ -1,19 +1,14 @@
 <!--index.wxml-->
 <view class="container">
   <view>
-    <!-- <a class="weui-btn weui-btn_primary" bindtap="main01">开始治疗</a> -->
-    <view style="text-align:center;">{{currentText}}</view>
-    <view class="main_img">
-      <image src="/images/index.jpg" />
-    </view>
-
+    <view style="text-align:center; font-size: 36px;">{{currentText}}</view>
+    <view style="height: 100px;"></view>
     <navigator url="/pages/test2/test2" class="btnNav">
-      <a class="weui-btn weui-btn_primary">开始治疗</a>
+      <a class="weui-btn weui-btn_primary" style="font-size: 26px;">开始治疗</a>
     </navigator>
 
-    <navigator url="../history/hindex">
+    <!-- <navigator url="../history/hindex">
       <a class="weui-btn weui-btn_disabled weui-btn_primary">历史结果</a>
-    </navigator>
+    </navigator> -->
   </view>
-  <view style="height:100px;"></view>
 </view>

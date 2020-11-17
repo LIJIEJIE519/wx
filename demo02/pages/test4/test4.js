@@ -8,7 +8,7 @@ Page({
   data: {
     qnaire: [
       {
-        "question": "1. 您是否头重如裹？请选择是或否。"
+        "question": "1. 您是否头重如裹？"
       },
     ],
     option: [

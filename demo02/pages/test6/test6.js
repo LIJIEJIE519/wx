@@ -8,7 +8,7 @@ Page({
   data: {
     qnaire: [
       {
-        "question": "3. 您是否肢体困重？请选择是或否。"
+        "question": "3. 您是否肢体困重？"
       },
     ],
     option: [

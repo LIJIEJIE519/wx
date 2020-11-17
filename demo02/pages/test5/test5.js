@@ -8,7 +8,7 @@ Page({
   data: {
     qnaire: [
       {
-        "question": "2. 您是否昏昏欲睡？请选择是或否。"
+        "question": "2. 您是否昏昏欲睡？"
       },
     ],
     option: [

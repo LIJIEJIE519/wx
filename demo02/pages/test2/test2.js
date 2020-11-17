@@ -1,6 +1,6 @@
 
 const plugin = requirePlugin('WechatSI');
-let tongue_num = 0;
+let tongue_num = 1;
 
 Page({
   onShareAppMessage() {
@@ -14,7 +14,7 @@ Page({
     result: {},
     frameWidth: 0,
     frameHeight: 0,
-    width: 288,
+    width: 888,
     height: 358,
     showCanvas: false,
 
@@ -22,6 +22,7 @@ Page({
     content: '第一步为您进行舌诊，请伸舌头对准摄像头！',//word2voice内容
     src: '',  //word2voice地址
     tongue_src: '', // 舌头拍照地址
+    photo_text: "拍第一张"
   },
   
   onReady() {
@@ -101,8 +102,22 @@ Page({
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
+        console.log(res.tempImagePath)
+        tongue_num += 1
+        wx.showModal({
+          title: '提示',
+          content: '未检测到舌头，请重新拍摄',
+          success (res) {
+            if (res.confirm) {
+              console.log('点击确定')
+            } else if (res.cancel) {
+              console.log('点击取消')
+            }
+          }
+        })
         this.setData({
-          tongue_src: res.tempImagePath
+          tongue_src: res.tempImagePath,
+          photo_text: "拍第"+tongue_num+"张",
         })
       }
     })

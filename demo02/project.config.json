@@ -108,6 +108,14 @@
 					"id": -1,
 					"name": "test4",
 					"pathName": "pages/test4/test4",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "test3",
+					"pathName": "pages/test3/test3",
+					"query": "",
 					"scene": null
 				}
 			]
