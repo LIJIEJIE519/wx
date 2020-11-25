@@ -1,116 +1,116 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "autoAudits": false,
-    "coverView": true,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "enhance": false,
-    "nodeModules": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "bundle": true,
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": true,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "packNpmManually": false,
-    "packNpmRelationList": []
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.0.4",
-  "appid": "wxf40c46432d9bd0cc",
-  "projectname": "demo01",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "currentL": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": -1,
-      "list": [
-        {
-          "id": 0,
-          "name": "望",
-          "pathName": "pages/main01/mindex01",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "问",
-          "pathName": "pages/main02/mindex02",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "word2voice",
-          "pathName": "pages/word2voice/word2voice",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "test2",
-          "pathName": "pages/test2/test2",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "test4",
-          "pathName": "pages/test4/test4",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"coverView": true,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"enhance": false,
+		"nodeModules": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true,
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": true,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"packNpmManually": false,
+		"packNpmRelationList": []
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.4",
+	"appid": "wxf40c46432d9bd0cc",
+	"projectname": "demo01",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "望",
+					"pathName": "pages/main01/mindex01",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "问",
+					"pathName": "pages/main02/mindex02",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "word2voice",
+					"pathName": "pages/word2voice/word2voice",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test2",
+					"pathName": "pages/test2/test2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test4",
+					"pathName": "pages/test4/test4",
+					"scene": null
+				}
+			]
+		}
+	}
 }

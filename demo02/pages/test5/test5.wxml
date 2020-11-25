@@ -1,12 +1,6 @@
 <!--pages/main01/mindex01.wxml-->
 <view class="" >
-  <!-- <view class="weui-article">
-    <view class="weui-article__h1" style="  display: flex;align-items: center;justify-content: center; ">
-      <view class="main_img">
-        <image src="/images/1.jpg" />
-      </view>
-    </view>
-  </view> -->
+  <view style="height: 100px;"></view>
   <view style="margin: 40px; font-size: 32px;">问题2：</view>
 
   <form bindsubmit="formSubmit" bindreset="formReset">
@@ -16,16 +10,15 @@
         <view class='question' style="font-size: 26px;">{{item.question}}</view>
         <view class="line"></view>
         <radio-group class='radio-group' name='answer{{index}}' bindchange='radioChange'>
-          <view class="radio" wx:for="{{option}}" wx:for-item="select" style="width: 60%;">
-              <label style="font-size: 28px;"><radio value="{{select.value}}" />{{select.name}}</label>
-          </view>
+          <label style="font-size: 28px; float: left;margin-left: 15%;" ><radio value="1" />是</label>
+          <label style="font-size: 28px; margin-left: 40rpx;"><radio value="0" />否</label>
         </radio-group>
       </view>
     </view>
 
     <view>
-      <navigator url="../test6/test6">
-        <a class="weui-btn weui-btn_primary">下一步</a>
+      <navigator url="../test6/test6" style="margin-top: 35%;">
+        <a class="weui-btn weui-btn_primary" style="font-size: 26px;">下个问题</a>
       </navigator>
     </view>
   </form>

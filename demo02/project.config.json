@@ -70,20 +70,6 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 0,
-					"name": "望",
-					"pathName": "pages/main01/mindex01",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "问",
-					"pathName": "pages/main02/mindex02",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "test",
 					"pathName": "pages/test/test",

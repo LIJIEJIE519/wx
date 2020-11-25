@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="container">
   <view>
-    <view style="text-align:center; font-size: 36px;">{{currentText}}</view>
     <view style="height: 100px;"></view>
-    <navigator url="/pages/test2/test2" class="btnNav">
+    <view style="text-align:center; font-size: 36px;">{{currentText}}</view>
+    <navigator url="/pages/test2/test2" style="margin-top: 80%;">
       <a class="weui-btn weui-btn_primary" style="font-size: 26px;">开始治疗</a>
     </navigator>
 
