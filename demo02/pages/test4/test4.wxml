@@ -1,28 +1,29 @@
 <!--pages/main01/mindex01.wxml-->
-<view class="" >
-  <view style="height: 100px;"></view>
-  <view style="margin: 40px; font-size: 32px;">问题1：</view>
+<view class="container">
+  <view style="height: 60px;"></view>
+  <view style="margin: 40px; font-size: 32px;">{{question_tile}}</view>
   <form bindsubmit="formSubmit" bindreset="formReset" >
     <view class="page-section page-section-gap">
-      <view class='naire'
-      wx:for="{{qnaire}}">
-        <view class='question' style="font-size: 26px;">{{item.question}}</view>
+      <view class='naire'>
+        <view class='question' style="font-size: 26px;">{{question}}</view>
         <view class="line"></view>
-        <radio-group class='radio-group' name='answer{{index}}' bindchange='radioChange'>
+        <radio-group class='radio-group'  name="radio">
           <label style="font-size: 28px; float: left;margin-left: 15%;" ><radio value="1" />是</label>
           <label style="font-size: 28px; margin-left: 40rpx;"><radio value="0" />否</label>
-          <!-- <view class="radio" wx:for="{{option}}" wx:for-item="select" style="width: 30%;">
-              <label style="font-size: 28px;"><radio value="{{select.value}}" />{{select.name}}</label>
-          </view> -->
         </radio-group>
       </view>
     </view>
 
-    <view>
+    <view class="btn-area" style="margin-top: 30%;margin-bottom: 20%;">
+      <button formType="submit"
+       class="weui-btn weui-btn_primary" style="font-size: 26px;">下个问题</button>
+    </view>
+
+    <!-- <view>
       <navigator url="../test5/test5" style="margin-top: 35%;">
         <a class="weui-btn weui-btn_primary" style="font-size: 26px;">下个问题</a>
       </navigator>
-    </view>
+    </view> -->
   </form>
     
 </view>

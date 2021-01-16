@@ -6,37 +6,37 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
 		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
-		"enhance": false,
-		"nodeModules": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
 		"bundle": true,
-		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": true,
+		"compileHotReLoad": false,
+		"useIsolateContext": true,
 		"useMultiFrameRuntime": false,
 		"useApiHook": true,
 		"packNpmManually": false,
 		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.14.3",
 	"appid": "wxf40c46432d9bd0cc",
 	"projectname": "demo02",
 	"debugOptions": {
@@ -71,36 +71,29 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "test",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "word2voice",
-					"pathName": "pages/word2voice/word2voice",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "test2",
-					"pathName": "pages/test2/test2",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "test4",
 					"pathName": "pages/test4/test4",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": 6,
-					"name": "test3",
-					"pathName": "pages/test3/test3",
+					"id": 1,
+					"name": "test6",
+					"pathName": "pages/test6/test6",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test7",
+					"pathName": "pages/test7/test7",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "modelTest",
+					"pathName": "pages/modelTest/modelTest",
 					"query": "",
 					"scene": null
 				}

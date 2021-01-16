@@ -1,35 +1,53 @@
 const plugin = requirePlugin('WechatSI');
-
+var res = {};
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    qnaire: [
-      {
-        "question": "3. 您是否肢体困重？"
-      },
-    ],
-    option: [
-      {value: "1", name: "是"},
-      {value: "0", name: "否"},
-    ],
-    content: '最后一个问题，您是否肢体困重？请选择是或否。', // 语音播放内容
+    question: "",
+    content: '最后一个问题，', // 语音播放内容
     src: '',  //word2voice地址
     timeId: 0,  //计时器id
     list: [
-    "您是否头重如裹？请回答是或否。",
-    "您是否昏昏欲睡？请回答是或否。",
-    "您是否肢体困重？请回答是或否。"],
-    
+    "您是否睡眠不佳？",
+    "您是否嗜睡？",
+    "您是否睡眠不佳？",
+    "您是否睡眠不佳？",
+    "您是否心烦不安？"],
+    type: "0",
+    question_tile: "问题3："
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function () {
+  onLoad: function (option) {
+    res = JSON.parse(option.res);
+    var oType = res.type != null ? res.type : 0;
+    this.setData({
+      type: oType,
+      question: this.data.list[parseInt(oType)],
+      content: this.data.content + this.data.list[parseInt(oType)]
+    })
     this.word2voice(this.data.content);
+  },
+
+  formSubmit(e) {
+    console.log('test6提交：', e.detail.value["radio"]);
+    var radio = e.detail.value["radio"];
+    if (radio != "") {
+      res.q3 = radio;
+      console.log(res)
+      wx.navigateTo({
+        url: '../test7/test7?res=' + JSON.stringify(res),
+      });
+    } else {
+      wx.showToast({
+        title: '请选择是或否',
+        icon: 'loading',
+        duration: 1000//持续的时间
+      })
+      return false;
+    }
   },
 
   /**

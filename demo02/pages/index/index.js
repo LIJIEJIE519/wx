@@ -61,6 +61,4 @@ Page({
     this.innerAudioContext.src = this.data.src //设置音频地址
     this.innerAudioContext.play(); //播放音频
   },
-
-
 })

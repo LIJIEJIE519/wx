@@ -7,8 +7,9 @@ page{
   border-radius: 36rpx;
   width: 85%;
   margin-left: 7.5%;
-  margin-top: 40rpx;
   margin-bottom: 20rpx;
+  padding-top: 40rpx;
+
 }
 .line{
   background: #E0E3DA;
@@ -18,15 +19,15 @@ page{
 }
 .question {
   height: 120rpx;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 .radio-group {
   /* display: flex; */
-  height: 160rpx;
+  height: 120rpx;
   flex-direction: column;
   font-size: 30rpx;
   text-indent: 14rpx;
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   margin-bottom: 40rpx;
 }
 .radio {

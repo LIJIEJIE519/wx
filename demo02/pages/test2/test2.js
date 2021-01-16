@@ -2,6 +2,8 @@
 const plugin = requirePlugin('WechatSI');
 let tongue_num = 1;
 
+var app = getApp();
+
 Page({
   onShareAppMessage() {
     return {
@@ -45,6 +47,8 @@ Page({
       })
     }) 
   },
+
+
 
   // 文字转语音
   word2voice: function (content) {
@@ -99,26 +103,41 @@ Page({
   // 拍照上传
   takePhoto: function() {
     var that = this;
+    app.globalData.theType = '2';
+    console.log(app.globalData.theType);
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
         console.log(res.tempImagePath)
-        tongue_num += 1
-        wx.showModal({
-          title: '提示',
-          content: '未检测到舌头，请重新拍摄',
-          success (res) {
-            if (res.confirm) {
-              console.log('点击确定')
-            } else if (res.cancel) {
-              console.log('点击取消')
-            }
-          }
-        })
+        tongue_num += 1;
+        if(false) {
+          that.showTag();
+        }
         this.setData({
           tongue_src: res.tempImagePath,
           photo_text: "拍第"+tongue_num+"张",
         })
+      }
+    });
+
+    // 0,1,2,3,4
+    var type = 0;
+    wx.navigateTo({
+      url: '../test4/test4?type=' + type,
+    });
+  },
+
+
+  showTag() {
+    wx.showModal({
+      title: '提示',
+      content: '未检测到舌头，请重新拍摄',
+      success (res) {
+        if (res.confirm) {
+          console.log('点击确定')
+        } else if (res.cancel) {
+          console.log('点击取消')
+        }
       }
     })
   },

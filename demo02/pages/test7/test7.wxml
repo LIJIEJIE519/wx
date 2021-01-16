@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="page-head">
+    <view class="page-head-title">诊断结果:{{result}}</view>
+    <view class="page-head-line"></view>
+    <view class="page-head-desc">治疗建议</view>
+  </view>
+
+  <view class="page-body">
+    <view class="page-section page-section-spacing">
+      <view style="font-size: 46rpx;">
+        <h1></h1>
+      </view>
+      <view class="text-box" scroll-y="true" scroll-top="{{scrollTop}}">
+        <text>{{plan}}</text>
+      </view>
+    </view>
+  </view>
+</view>

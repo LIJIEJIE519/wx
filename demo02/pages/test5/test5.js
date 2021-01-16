@@ -1,35 +1,52 @@
 const plugin = requirePlugin('WechatSI');
-
+var res = {};
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    qnaire: [
-      {
-        "question": "2. 您是否昏昏欲睡？"
-      },
-    ],
-    option: [
-      {value: "1", name: "是"},
-      {value: "0", name: "否"},
-    ],
-    content: '第二个问题，您是否昏昏欲睡？请选择是或否。', // 语音播放内容
+    question: "",
+    content: '第二个问题，', // 语音播放内容
     src: '',  //word2voice地址
     timeId: 0,  //计时器id
     list: [
-    "您是否头重如裹？请回答是或否。",
-    "您是否昏昏欲睡？请回答是或否。",
-    "您是否肢体困重？请回答是或否。"],
-    
+    "您是否身体沉重？",
+    "您是否白天爱出汗？",
+    "您是否睡觉爱出汗？",
+    "您否睡觉爱出汗？",
+    "您是否心脏部位疼痛？"],
+    type: "0",
+    question_tile: "问题2："
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function () {
+  onLoad: function (option) {
+    res = JSON.parse(option.res);
+    var oType = res.type != null ? res.type : 0;
+    this.setData({
+      type: oType,
+      question: this.data.list[parseInt(oType)],
+      content: this.data.content + this.data.list[parseInt(oType)]
+    })
+
     this.word2voice(this.data.content);
+  },
+
+  formSubmit(e) {
+    var radio = e.detail.value["radio"];
+    if (radio != "") {
+      res.q2 = radio;
+      wx.navigateTo({
+        url: '../test6/test6?res=' + JSON.stringify(res),
+      });
+    } else {
+      wx.showToast({
+        title: '请选择是或否',
+        icon: 'loading',
+        duration: 1000//持续的时间
+      })
+      return false;
+    }
   },
 
   /**
