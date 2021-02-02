@@ -12,9 +12,12 @@ var plugin = requirePlugin('tfjsPlugin');
 App({
 
   onLaunch: function () {
-    tf.ENV.flagRegistry.WEBGL_VERSION.evaluationFn = () => { return 1 };
+    wx.cloud.init({
+      env: "old-snowboy"
+    })
+
+    // tf.ENV.flagRegistry.WEBGL_VERSION.evaluationFn = () => { return 1 };
     plugin.configPlugin({
-      // polyfill fetch function
       fetchFunc: fetchWechat.fetchFunc(),
       // inject tfjs runtime
       tf,

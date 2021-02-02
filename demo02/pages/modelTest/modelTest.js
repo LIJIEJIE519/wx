@@ -1,8 +1,11 @@
-// pages/modelTest/modelTest.js
 // import { Classifier } from './model';
-const regeneratorRuntime = require('regenerator-runtime')
+// const regeneratorRuntime = require('regenerator-runtime')
 const tf = require('@tensorflow/tfjs-core')
 const tfl = require('@tensorflow/tfjs-layers')
+
+// import * as tf from '../../tfjs/tf.min.js';
+let modelLocalFolder = wx.env.USER_DATA_PATH + '/model/';
+let fileManager = wx.getFileSystemManager();
 
 Page({
 
@@ -12,14 +15,13 @@ Page({
   data: {
 
   },
-
-
   async predictBreed(){
     console.log("Model is loading...");
-    const MODEL_URL = '../../model/model.json';
-    // mobilenet = await tfl.loadLayersModel("https://ai.flypot.cn/models/coco-ssd/model.json");
-    mobilenet = await tfl.loadLayersModel("../../model/model.json");
-    mobilenet.summary()
+    const MODEL_URL = wx.env.USER_DATA_PATH + "/model/model.json";
+    
+    var model = await tfl.loadLayersModel(MODEL_URL);
+    model.predict(tf.zeros([1, 64, 64, 3])).dispose();
+
     console.log("Model loaded Successfully!")
   },
 

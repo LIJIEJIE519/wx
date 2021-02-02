@@ -1,6 +1,0 @@
-<view class="yuyinWrap">
-  <view class=''>
-    <button class="weui-btn weui-btn_primary" bindtap='word2voice'>开始</button>
-    <button class="weui-btn weui-btn_primary" bindtap='end'>结束</button>
-  </view>
-</view>

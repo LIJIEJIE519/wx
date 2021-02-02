@@ -1,6 +1,11 @@
 
 const plugin = requirePlugin('WechatSI');
 let tongue_num = 1;
+const tfl = require('@tensorflow/tfjs-layers')
+const tf = require('@tensorflow/tfjs-core')
+// import * as tf from '../../tfjs/tf.min.js';
+let modelLocalFolder = wx.env.USER_DATA_PATH + '/model/';
+let fileManager = wx.getFileSystemManager();
 
 var app = getApp();
 
@@ -9,6 +14,20 @@ Page({
     return {
       title: 'camera',
     }
+  },
+  async predictBreed(){
+    console.log("Model is loading...");
+    // const MODEL_URL = wx.env.USER_DATA_PATH + '/model/model.json';
+    const MODEL_URL = 'http://usr/model/model.json';
+    fileManager.getFileInfo({
+      filePath: MODEL_URL,
+      success(res) {
+        console.log(res.size);
+      }
+    })
+    var model = await tfl.loadLayersModel(MODEL_URL);
+    model.predict(tf.zeros([1, 64, 64, 3])).dispose();
+    console.log("Model loaded Successfully!")
   },
 
   data: {
@@ -27,14 +46,17 @@ Page({
     photo_text: "拍第一张"
   },
   
-  onReady() {
+  async onReady() {
+    const net = await this.predictBreed()
     this.ctx = wx.createCameraContext()
     this.voice();
+
   },
 
   onLoad(e) {
-    this.word2voice(this.data.content);
+    // this.word2voice(this.data.content);
   },
+
 
   // 创建内部 voice 上下文 InnerAudioContext 对象。
   voice: function() {

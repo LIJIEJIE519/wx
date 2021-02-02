@@ -9,12 +9,12 @@
 		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
+		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
@@ -25,8 +25,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": true,
-		"useCompilerModule": true,
+		"bundle": false,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": true,
 		"compileHotReLoad": false,
 		"useIsolateContext": true,
@@ -36,7 +36,7 @@
 		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.14.3",
+	"libVersion": "2.14.4",
 	"appid": "wxf40c46432d9bd0cc",
 	"projectname": "demo02",
 	"debugOptions": {
@@ -95,6 +95,12 @@
 					"name": "modelTest",
 					"pathName": "pages/modelTest/modelTest",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "mobilenet_local",
+					"pathName": "pages/mobilenet_local/index",
 					"scene": null
 				}
 			]
